@@ -1,5 +1,19 @@
 [
  {
+  "name": "Nois",
+  "chain_id": "nois-1",
+  "lcd": "https://lcd-nois.mib.tech",
+  "rpc": "https://rpc-nois.mib.tech/",
+  "coinDenom": "NOIS",
+  "coinMinimalDenom": "unois",
+  "prefix": "nois",
+  "version": "stargate",
+  "decimals": 6,
+  "group": "mainnet",
+  "cw20_support": true,
+  "features": ["stargate", "ibc-transfer", "cosmwasm"]
+ },
+ {
   "name": "Juno",
   "chain_id": "juno-1",
   "lcd": "https://lcd-juno.itastakers.com",

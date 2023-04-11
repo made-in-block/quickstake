@@ -12,7 +12,7 @@ const Header = () => {
         </Typography>
 
         <Typography variant="h6" component="h2">
-          by ITA Stakers 🇮🇹
+          by Made in Block 👽
         </Typography>
       </Grid>
       <Grid item xs={12} md={6} textAlign="right">

@@ -1,11 +1,11 @@
 <p align="center">
-  <img alt="ITA Stakers" src="http://i.epvpimg.com/D1Dpbab.png" width="100" />
+  <img alt="MiB" src="https://www.mib.tech/images/mib-logo-name.png" width="100" />
 </p>
 <h1 align="center">
   Quickstake
 </h1>
 <p align="center">
-  This is the repository for <a href="https://quickstake.itastakers.com">ITA Stakers' Quickstake</a>
+  This is the repository for <a href="https://quickstake.io">MiB's Quickstake</a>
 </p>
 
 ## 🚀 Features
@@ -16,10 +16,13 @@
 - Governance (View proposals, vote)
 
 ## 💡 Get started
+
+*Node version:* v14
+
 Clone this repo to get started:
 ```sh
 # Get the latest snapshot
-git clone git@github.com:itastakers/quickstake.git myproject
+git clone git@github.com:made-in-block/quickstake.git myproject
 
 # Change directory
 cd myproject

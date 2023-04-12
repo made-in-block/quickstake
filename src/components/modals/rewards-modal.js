@@ -17,8 +17,6 @@ const style = {
     p: 4,
 };
 
-
-
 const RewardsModal = ({ open, handleClose }) => {
     const [state, dispatch] = useContext(GlobalContext);
     const [rewards, setRewards] = useState([]);
@@ -37,12 +35,18 @@ const RewardsModal = ({ open, handleClose }) => {
                         const validators = res.data.result
                         const arr = [];
                         result.rewards.map((entry) => {
-                            let sum = 0;
-                            entry.reward.map(re => sum += re.amount)
+
+                            // for semplicity filter non native rewards: 
+                            // TODO: chains like stride have a lot of non native rewards, fix this
+
+                            let chainRewards = 0;
+                            let singleReward = entry.reward.find((el) => el.denom === chain.coinMinimalDenom)
+
+                            chainRewards = singleReward.amount;
                             const newEntry = {
                                 name: (validators.find(el => el.operator_address === entry.validatorAddress)).description.moniker,
                                 address: entry.validatorAddress,
-                                amount: Decimal.fromAtomics(sum, 24).toFloatApproximation().toFixed(6) + " " + chain.coinDenom
+                                amount: Decimal.fromAtomics(chainRewards, 24).toFloatApproximation().toFixed(6) + " " + chain.coinDenom
                             }
                             return arr.push(newEntry);
                         })

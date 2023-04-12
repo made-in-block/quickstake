@@ -11,13 +11,14 @@
   "decimals": 6,
   "group": "mainnet",
   "cw20_support": true,
-  "features": ["stargate", "ibc-transfer", "cosmwasm"]
+  "features": ["stargate", "ibc-transfer", "cosmwasm"],
+  "mib": "noisvaloper1pq6spkms6p42djr9tsfqmlnngaf7aht8288u2k"
  },
  {
   "name": "Juno",
   "chain_id": "juno-1",
-  "lcd": "https://lcd-juno.itastakers.com",
-  "rpc": "https://rpc-juno.itastakers.com",
+  "lcd": "https://lcd-juno.mib.tech",
+  "rpc": "https://rpc-juno.mib.tech",
   "coinDenom": "JUNO",
   "coinMinimalDenom": "ujuno",
   "prefix": "juno",
@@ -25,20 +26,22 @@
   "decimals": 6,
   "group": "mainnet",
   "cw20_support": false,
-  "features": ["stargate", "ibc-transfer", "cosmwasm"]
+  "features": ["stargate", "ibc-transfer", "cosmwasm"],
+  "mib": "junovaloper1juczud9nep06t0khghvm643hf9usw45r23gsmr"
  },
  {
   "name": "Stargaze",
   "chain_id": "stargaze-1",
-  "lcd": "https://lcd-stargaze.itastakers.com",
-  "rpc": "https://rpc-stargaze.itastakers.com",
+  "lcd": "https://rest.cosmos.directory/stargaze",
+  "rpc": "https://rpc.cosmos.directory/stargaze",
   "coinDenom": "STARS",
   "coinMinimalDenom": "ustars",
   "prefix": "stars",
   "version": "stargate",
   "decimals": 6,
   "group": "mainnet",
-  "cw20_support": false
+  "cw20_support": false,
+  "mib": "starsvaloper1s33zct2zhhaf60x4a90cpe9yquw99jj0tfn4k7"
  },
  {
   "name": "BitSong",
@@ -68,30 +71,18 @@
   "cw20_support": false
  },
  {
-  "name": "Sentinel",
-  "chain_id": "sentinelhub-2",
-  "lcd": "https://lcd-sentinel.itastakers.com",
-  "rpc": "https://rpc-sentinel.itastakers.com",
-  "coinDenom": "dVPN",
-  "coinMinimalDenom": "udvpn",
-  "prefix": "sent",
-  "version": "stargate",
-  "decimals": 6,
-  "group": "mainnet",
-  "cw20_support": false
- },
- {
   "name": "Osmosis",
   "chain_id": "osmosis-1",
-  "lcd": "https://lcd-osmosis.itastakers.com",
-  "rpc": "https://rpc-osmosis.itastakers.com",
+  "lcd": "https://rest.cosmos.directory/osmosis",
+  "rpc": "https://rpc.cosmos.directory/osmosis",
   "coinDenom": "OSMO",
   "coinMinimalDenom": "uosmo",
   "prefix": "osmo",
   "version": "stargate",
   "decimals": 6,
   "group": "mainnet",
-  "cw20_support": false
+  "cw20_support": false,
+  "miv": "osmovaloper1juczud9nep06t0khghvm643hf9usw45r3jxhxn"
  },
  {
     "name": "Juno Uni",

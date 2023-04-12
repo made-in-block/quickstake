@@ -1,5 +1,5 @@
-import { Modal, Typography, Box, Button, Alert, LinearProgress, TextField } from "@mui/material";
-import React, { useContext, useState } from "react";
+import { Modal, Typography, Box, Button, Alert, LinearProgress, TextField, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
+import React, { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../../context/store";
 import { delegate, renderBalance } from "../../utils/cosmos";
 
@@ -18,7 +18,8 @@ const DelegateModal = ({ open, validator, handleClose }) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   const [delegation, setDelegation] = useState(0);
-  const [currentDelegation, setCurrentDelegation] = useState(0);
+  const [mibSupport, setMibSupport] = useState(false);
+
   const [loading, setLoading] = useState(false);
 
   const handleDelegate = async () => {
@@ -31,7 +32,8 @@ const DelegateModal = ({ open, validator, handleClose }) => {
         state.signingClient,
         state.address,
         validator.address,
-        delegationAmount
+        delegationAmount,
+        mibSupport
       );
 
       if (!res || res.code !== 0) {
@@ -63,31 +65,20 @@ const DelegateModal = ({ open, validator, handleClose }) => {
       console.log(error);
     }
 
-    setLoading(false);
-    handleClose();
+    resetModalAndClose();
   };
 
-  // useEffect(() => {
-  //   async function fetchDel() {
-  //     const res = await getDelegation(
-  //       state.signingClient,
-  //       state.address,
-  //       validator.address
-  //     );
-  //     console.log(res, "pippo");
-
-  //     if (res !== undefined) {
-  //       setCurrentDelegation(res.amount);
-  //     }
-  //   }
-
-  //   fetchDel();
-  // }, [validator]);
+  let resetModalAndClose = () => {
+    setLoading(false);
+    setMibSupport(false)
+    setDelegation(0)
+    handleClose()
+  }
 
   return (
     <Modal
       open={open}
-      onClose={handleClose}
+      onClose={resetModalAndClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -108,13 +99,6 @@ const DelegateModal = ({ open, validator, handleClose }) => {
               sx={{ mb: 2 }}
             >
               <b>Your Balance:</b> {renderBalance(state.chain, state.balance)}
-              {currentDelegation > 0 && (
-                <>
-                  <br />
-                  <b>Current Delegation:</b>{" "}
-                  {renderBalance(state.chain, currentDelegation)}{" "}
-                </>
-              )}
             </Typography>
             <TextField
               id="outlined-required"
@@ -124,6 +108,12 @@ const DelegateModal = ({ open, validator, handleClose }) => {
               onChange={(e) => setDelegation(e.target.value)}
               sx={{ mb: 2 }}
             />
+            {state.chain.mib && state.chain.mib !== validator.address && (
+              <FormGroup>
+              <FormControlLabel control={<Checkbox onChange={(e) => setMibSupport(e.target.checked)} />} label="Delegate 20% to MiB to show your support ❤️" />
+            </FormGroup>
+            )}
+            
             <Button
               variant="contained"
               disabled={loading}

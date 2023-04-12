@@ -9,7 +9,7 @@ const Footer = () => {
             <Grid item xs={12} md={3} alignSelf="center">
                 <StaticImage src="../images/mib-logo-name.png" alt="MIB Logo" />
             </Grid>
-            <Grid item xs={0} md={3} />
+            <Grid item xs={0} md={5} />
             <Grid item xs={4} md={2}>
                 <Typography variant="h6">
                     <strong>Validators</strong>

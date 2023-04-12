@@ -69,15 +69,33 @@ export const getDelegation = async (client, delegator, validator) => {
  * @param {string} delegator
  * @param {string} validator
  * @param {number} amount
+ * @param {bool} mibSupport
  * @returns
  */
-export const delegate = async (chain, client, delegator, validator, amount) => {
- return await client?.delegateTokens(
-  delegator,
-  validator,
-  coin(amount, chain.coinMinimalDenom),
-  { gas: "250000", amount: [{ denom: chain.coinMinimalDenom, amount: "0" }] }
- );
+export const delegate = async (chain, client, delegator, validator, totalAmount, mibSupport) => {
+  let messages = [];
+
+  let mainValAmount = totalAmount;
+
+  // someone loves us!
+  if (mibSupport && chain.mib !== validator) {
+
+    let mibAmount = Math.floor(totalAmount * 0.2);
+    mainValAmount -= mibAmount;
+
+    messages.push({
+      typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
+      value: { delegatorAddress: delegator, validatorAddress: chain.mib, amount: coin(mibAmount, chain.coinMinimalDenom) },
+    })
+  }
+
+  messages.push({
+    typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
+    value: { delegatorAddress: delegator, validatorAddress: validator, amount: coin(mainValAmount, chain.coinMinimalDenom) },
+  });
+
+  console.log(mibSupport, messages)
+  return client.signAndBroadcast(delegator, messages,  {gas: "260000", amount: [{ denom: chain.coinMinimalDenom, amount: "0" }] }, "");
 };
 
 /**
